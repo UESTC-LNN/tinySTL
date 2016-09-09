@@ -112,12 +112,59 @@ namespace tinySTL{
 					start+=total_size;
 					return result;
 				}
-				else if(bytes_left>sz){
-					
+				else if(bytes_left>=sz){
+					nobjs=bytes_left/sz;
+					total_size=nobjs*sz;
+					start+=total_size;
+					result=start;
+					return result;
 				}
+				else{
+					size_t bytes_to_get=2*total_size+ROUND_UP(heap_size>>4);
+					if(bytes_left>0){
+						obj *my_free_list=free_list+FREELIST_INDEX(bytes_left);
+						obj *r=(obj*)start;
+						r->link=*my_free_list;
+						*my_free_list=r;
+					}
+
+					start=(char*)malloc(bytes_to_get);
+					if(0==start){
+						int i;
+						obj *my_free_list;
+						obj *p;
+						for(i=sz;i<=__MAX_BYTES;i+=__ALIGN){
+							my_free_list=free_list+FREELIST_INDEX(i);
+							p=*my_free_list;
+							if(0!=p){
+							start=(char*)p;
+							end=start+i;
+							*my_free_list=p->link;
+							return chunk_alloc(sz,nobjs);
+						}
+
+					}
+						end=0;
+						start=(char*)malloc_alloc::allocate(bytes_to_get);
+				
+				}
+					heap_size +=bytes_to_get;
+					end=start+bytes_to_get;
+					return chunk_alloc(sz,nobjs);
 			}
 	
 	}
+			void deallocate(void *p,size_t n){
+				if(n>128){
+					malloc_alloc::deallocate(p,n);
+					return;
+				}
+				
+				obj *my_free_list=free_list+FREELIST_INDEX(n);
+				obj *r=(obj*)p;
+				r->link=*my_free_list;
+				*my_free_list=r;
 
+			}
 
 }
