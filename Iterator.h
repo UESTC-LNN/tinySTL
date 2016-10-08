@@ -33,21 +33,21 @@ namespace tinySTL{
 		typedef typename Iterator::difference_type difference_type;
 	};
 
-	template<class Iterator>
-	class iterator_traits<Iterator*>{
-		typedef Iterator value_type;
-		typedef Iterator* pointer;
-		typedef Iterator& reference;
+	template<class T>
+	class iterator_traits<T*>{
+		typedef T value_type;
+		typedef T* pointer;
+		typedef T& reference;
 		typedef size_t difference_type;
 		typedef random_access_iterator_tag iterator_category;
 	
 	};
 
-	template<class Iterator>
-	class iterator_traits<const Iterator*>{
-		typedef Iterator value_type;
-		typedef const Iterator* pointer;
-		typedef const Iterator& reference;
+	template<class T>
+	class iterator_traits<const T*>{
+		typedef T value_type;
+		typedef const T* pointer;
+		typedef const T& reference;
 		typedef size_t difference_type;
 		typedef random_access_iterator_tag iterator_category;
 	
@@ -95,7 +95,37 @@ namespace tinySTL{
 		return __distance(first,last,iterator_category(first));
 	}
 
+	template<class InputIterator,class Distance>
+	inline void __advance(InputIterator &iter,Distance n,struct input_iterator_tag){
+		while(n--){
+			++iter;
+		}		
+	}
 
+	template<class InputIterator,class Distance>
+	inline void __advance(InputIterator &iter,Distance n,struct random_access_iterator_tag){
+		iter+=n;
+	}
+
+	template<class InputIterator,class Distance>
+	inline void __advance(InputIterator &iter,Distance n,struct bidirectional_iterator_tag){
+		if(n>=0){
+			while(n--){
+				++iter;
+			}
+		}
+		else{
+			while(n++){
+				--iter;
+			}
+		}
+	}
+
+	template<class InputIterator,class Distance>
+	inline void advance(InputIterator &iter,Distance n){
+		typedef typename iterator_traits<InputIterator>::category category;
+		__advance(iter,n,category());
+	}
 
 
 }

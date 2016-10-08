@@ -9,7 +9,6 @@
 
 #include "Construct.h"
 #include "Alloc.h"
-#include <new>
 #include <cassert>
 namespace tinySTL{
 

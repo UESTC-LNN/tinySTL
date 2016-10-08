@@ -12,27 +12,6 @@
 
 namespace tinySTL{
 	
-	class malloc_alloc{
-		public:
-			static void* allocate(size_t n){
-				void *result=malloc(n);
-				if(0==result){
-						
-				}
-				return result;
-			}
-			static void* realloc(void *p,size_t sz){
-				void *result=realloc(n);
-				if(0==result){
-				
-				}
-				return result;
-				
-			}
-			static dealloc(void *p){
-				free(p);
-			}
-	}
 	enum { __ALIGN=8};
 	enum { __MAX_BYTES=128};
 	enum { __NFREELISTS=__MAX_BYTES/__ALIGN};
@@ -61,7 +40,7 @@ namespace tinySTL{
 					return NULL;
 				}
 				if(n>128){
-					return malloc_alloc::allocate(n);
+					return malloc(n);
 				}
 				else{
 					obj *my_free_list=free_list+FREELIST_INDEX(n);
@@ -115,8 +94,8 @@ namespace tinySTL{
 				else if(bytes_left>=sz){
 					nobjs=bytes_left/sz;
 					total_size=nobjs*sz;
-					start+=total_size;
 					result=start;
+					start+=total_size;
 					return result;
 				}
 				else{
@@ -156,7 +135,7 @@ namespace tinySTL{
 	}
 			void deallocate(void *p,size_t n){
 				if(n>128){
-					malloc_alloc::deallocate(p,n);
+					free(p);
 					return;
 				}
 				
@@ -167,4 +146,7 @@ namespace tinySTL{
 
 			}
 
+	}
 }
+
+#endif

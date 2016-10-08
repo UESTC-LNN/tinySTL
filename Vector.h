@@ -6,7 +6,7 @@
  ************************************************************************/
 #ifndef __VECTOR_H
 #define __VECTOR_H
-
+#include <type_traits>
 #include "Allocator.h"
 #include "UninitializedFunctions.h"
 
@@ -26,6 +26,8 @@ namespace tinySTL{
 			iterator finish;
 			iterator end_of_storage;
 			typedef Alloc dataAllocator;
+
+		private:
 			iterator allocate_and_fill(size_t n,const T& x);
 			iterator fill_initialize(size_t n,const T& x){
 				start=allocate_and_fill(n,x);
@@ -39,38 +41,36 @@ namespace tinySTL{
 			}
 
 		public:
+			/***constructor****/
 			vector():start(0),finish(0),end_of_storage(0){}
 			vector(size_type n,const T& x){fill_initialize(n,x);}
 			vector(int n,const T& x){fill_initialize(n,x);}
 			vector(long n,const T& x){fill_initialize(n,x);}
 			explicit vector(size_type n){fill_initialize(n,T());}
-
+			
+			/***destructor*****/
 			~vector(){
 				destroy(start,finish);
 				deallocate();
 			}
 
 		public:
+			//iterator
 			inline iterator begin(){return start;}
 			inline iterator end(){return finish;}
-			inline size_type size(){return (finish-size);}
+
+			//capacity
+			inline size_type size(){return (finish-start);}
 			inline size_type capacity(){return (end_of_storage-start);}
 			bool empty(){return begin()==end();}
 
-		public:	
-			void clear();
-			void push_back(const T& value);
-			void pop_back();
-			iterator insert(iterator position,const T& value);
-			void insert(iterator position,const T& n,const T& value);
-			template<class InputIterator>
-			void insert(iterator position,InputIterator first,InputIterator last);
-			iterator erase(iterator position);
-			iterator erase(iterator first,iterator last);
+		public:
+			//access
+			reference front(){return *(end()-1)}
+			reference back(){return *begin()}
+			reference operator[](size_type n){return *(begin()+(difference_type)n)}
+			reference operator at(size_type n){}
 
-		private:
-			iterator insert_aux(iterator position,const T& x);
-	
 	
 	
 	
