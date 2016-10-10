@@ -72,61 +72,6 @@ namespace tinySTL{
 		return static_cast<typename iterator_traits<Iterator>::value_type*>(0);
 	}
 
-	template<class Iterator>
-	inline typename iterator_traits<Iterator>::difference_type
-	__distance(Iterator first,Iterator last,struct input_iterator_tag){
-		typename iterator_traits<Iterator>::difference_type n=0;
-		for(;first!=last;++first){
-			++n;
-		}
-		return n;
-	}
-
-	template<class Iterator>
-	inline typename iterator_traits<Iterator>::difference_type
-	__distance(Iterator first,Iterator last,struct random_access_iterator_tag){
-//		typename iterator_traits<Iterator>::difference_type n=0
-		return last-first;
-	}
-
-	template<class Iterator>
-	inline typename iterator_traits<Iterator>::difference_type
-	distance(Iterator first,Iterator last){
-		return __distance(first,last,iterator_category(first));
-	}
-
-	template<class InputIterator,class Distance>
-	inline void __advance(InputIterator &iter,Distance n,struct input_iterator_tag){
-		while(n--){
-			++iter;
-		}		
-	}
-
-	template<class InputIterator,class Distance>
-	inline void __advance(InputIterator &iter,Distance n,struct random_access_iterator_tag){
-		iter+=n;
-	}
-
-	template<class InputIterator,class Distance>
-	inline void __advance(InputIterator &iter,Distance n,struct bidirectional_iterator_tag){
-		if(n>=0){
-			while(n--){
-				++iter;
-			}
-		}
-		else{
-			while(n++){
-				--iter;
-			}
-		}
-	}
-
-	template<class InputIterator,class Distance>
-	inline void advance(InputIterator &iter,Distance n){
-		typedef typename iterator_traits<InputIterator>::category category;
-		__advance(iter,n,category());
-	}
-
 
 }
 

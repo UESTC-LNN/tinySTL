@@ -120,13 +120,13 @@ namespace tinySTL{
 							end=start+i;
 							*my_free_list=p->link;
 							return chunk_alloc(sz,nobjs);
-						}
+							}
 
-					}
+						}
 						end=0;
-						start=(char*)malloc_alloc::allocate(bytes_to_get);
+						start=(char*)malloc(bytes_to_get);
 				
-				}
+					}
 					heap_size +=bytes_to_get;
 					end=start+bytes_to_get;
 					return chunk_alloc(sz,nobjs);
