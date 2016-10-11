@@ -9,7 +9,7 @@
 #include <type_traits>
 #include "Allocator.h"
 #include "UninitializedFunctions.h"
-
+#include "Algorithm.h"
 namespace tinySTL{
 
 	template<class T,class Alloc=Allocator<T> >
@@ -69,7 +69,17 @@ namespace tinySTL{
 			reference front(){return *(end()-1)}
 			reference back(){return *begin()}
 			reference operator[](size_type n){return *(begin()+(difference_type)n)}
-			reference operator at(size_type n){}
+			
+		public:
+			void push_back(const T& value);
+			void pop_back();
+			iterator erase(iterator position);
+			iterator erase(iterator first,iterator last);
+			iterator insert(iterator position,const T& value);
+			void insert(iterator position,size_type n,const T& value);
+			void insert(iterator position,iterator first,iterator last);
+			void clear();
+			void resize(size_type new_size,const T& value);
 
 	
 	
