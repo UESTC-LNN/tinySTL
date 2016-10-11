@@ -77,7 +77,7 @@ namespace tinySTL{
 			iterator erase(iterator first,iterator last);
 			iterator insert(iterator position,const T& value);
 			void insert(iterator position,size_type n,const T& value);
-			void insert(iterator position,iterator first,iterator last);
+	//		void insert(iterator position,iterator first,iterator last);
 			void clear();
 			void resize(size_type new_size,const T& value);
 

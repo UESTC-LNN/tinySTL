@@ -9,7 +9,7 @@
 #include <cstring>
 #include <utility>
 #include "Iterator.h"
-
+#include "TypeTraits.h"
 namespace tinySTL{
 	
 	//fill
@@ -127,7 +127,29 @@ namespace tinySTL{
 		__advance(iter,n,category());
 	}
 	//copy
-		
+	
+	template<class InputIterator,class OutputIterator>
+	inline OutputIterator __copy_dispatch(InputIterator first,InputIterator last,OutputIterator result){
+		`	
+	}
+	
+	
+
+	template<class InputIterator,class OutputIterator>
+	inline OutputIterator copy(InputIterator first,InputIterator last,OutputIterator result){
+		return __copy_dispatch(first,last,result);
+	}
+
+	template<>
+	inline char* copy(char* first,char* last,char* result){
+		memcpy(result,first,last-first);
+		return result+last-first;
+	}
+	template<>
+	inline wchar_t* copy(wchar_t* first,wchar_t last,wchar_t* result){
+		memcpy(result,first,sizeof(wchar_t)*(last-first));
+		return result+last-first;
+	}
 }
 
 #endif
