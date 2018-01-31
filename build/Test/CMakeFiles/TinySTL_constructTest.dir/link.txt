@@ -1,0 +1,1 @@
+/usr/bin/c++      CMakeFiles/TinySTL_constructTest.dir/TinySTL_constructTest.o  -o TinySTL_constructTest -rdynamic 

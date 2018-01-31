@@ -1,0 +1,1 @@
+/usr/bin/c++      CMakeFiles/TinySTL_vectorTest.dir/TinySTL_vectorTest.o CMakeFiles/TinySTL_vectorTest.dir/__/src/TinySTL_alloc.o  -o TinySTL_vectorTest -rdynamic 

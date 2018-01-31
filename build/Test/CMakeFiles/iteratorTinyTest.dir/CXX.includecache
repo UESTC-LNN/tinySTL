@@ -1,0 +1,24 @@
+#IncludeRegexLine: ^[ 	]*#[ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+../src/IteratorTiny.hpp
+stddef.h
+-
+
+/home/hqwu/TinySTL/Test/iteratorTinyTest.cc
+IteratorTiny.hpp
+/home/hqwu/TinySTL/Test/IteratorTiny.hpp
+iostream
+-
+assert.h
+-
+string.h
+-
+typeinfo
+-
+

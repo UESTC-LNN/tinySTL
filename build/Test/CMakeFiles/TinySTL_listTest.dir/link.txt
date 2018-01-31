@@ -1,0 +1,1 @@
+/usr/bin/c++      CMakeFiles/TinySTL_listTest.dir/TinySTL_listTest.o CMakeFiles/TinySTL_listTest.dir/__/src/TinySTL_alloc.o  -o TinySTL_listTest -rdynamic 

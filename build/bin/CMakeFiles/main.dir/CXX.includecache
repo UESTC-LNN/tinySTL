@@ -1,0 +1,44 @@
+#IncludeRegexLine: ^[ 	]*#[ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/hqwu/TinySTL/src/IteratorTiny.hpp
+stddef.h
+-
+
+/home/hqwu/TinySTL/src/TinySTL_alloc.cc
+TinySTL_alloc.h
+/home/hqwu/TinySTL/src/TinySTL_alloc.h
+iostream
+-
+unistd.h
+-
+
+/home/hqwu/TinySTL/src/TinySTL_alloc.h
+cstdlib
+-
+
+/home/hqwu/TinySTL/src/TinySTL_construct.hpp
+new
+-
+Type_traitsTiny.hpp
+/home/hqwu/TinySTL/src/Type_traitsTiny.hpp
+IteratorTiny.hpp
+/home/hqwu/TinySTL/src/IteratorTiny.hpp
+
+/home/hqwu/TinySTL/src/Type_traitsTiny.hpp
+
+/home/hqwu/TinySTL/src/main.cc
+IteratorTiny.hpp
+/home/hqwu/TinySTL/src/IteratorTiny.hpp
+Type_traitsTiny.hpp
+/home/hqwu/TinySTL/src/Type_traitsTiny.hpp
+TinySTL_construct.hpp
+/home/hqwu/TinySTL/src/TinySTL_construct.hpp
+TinySTL_alloc.h
+/home/hqwu/TinySTL/src/TinySTL_alloc.h
+

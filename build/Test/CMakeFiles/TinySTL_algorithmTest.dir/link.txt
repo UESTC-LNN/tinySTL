@@ -1,0 +1,1 @@
+/usr/bin/c++      CMakeFiles/TinySTL_algorithmTest.dir/TinySTL_algorithmTest.o  -o TinySTL_algorithmTest -rdynamic 
