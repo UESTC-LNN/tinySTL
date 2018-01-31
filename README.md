@@ -53,8 +53,8 @@ public:
 			typedef const value_type* const_pointer;
 			typedef const value_type& const_reference;
 
-			typedef rbtree_iterator<value_type,pointer,reference> iterator;
-			typedef rbtree_iterator<value_type,const_pointer,const_reference> const_iterator;
+			typedef rbtree_iterator< value_type,pointer,reference > iterator;
+			typedef rbtree_iterator< value_type,const_pointer,const_reference > const_iterator;
  };
  
  起初看书老是不知道为啥iterator的template参数要带3个(T,Reference,Pointer)，于是自作聪明带一个，于是发生了转换不了的情形，啥原因？
@@ -63,11 +63,11 @@ public:
 			typedef rbtree_iterator<const value_type> const_iterator;
       
   于是在iterator和const_iterator的类中：
-      node<T>* p;
-      node<const T>* p;
+      node< T >* p;
+      node< const T >* p;
      
   这就很尴尬了，比如给我们一个iterator it，如何变成const_iterator？
-      it.p是node<T>*类型，并不能用来作为const_iterator构造函数的参数，因为它需要的参数类型是node<const T>* ！
+      it.p是node< T >*类型，并不能用来作为const_iterator构造函数的参数，因为它需要的参数类型是node< const T >* ！
     
   所以这里需要3个参数，此时无论iterator还是const_iterator，其p的类型均为node<T>* 可互相作为参数来构造另外一个！
   两者不同仅在于reference和pointer，所以我们需要3个参数(T,Reference,Pointer)。
