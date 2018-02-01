@@ -11,6 +11,3 @@
 已经全部实现了基本的功能(find\insert\erase等)，其他拓展功能可通过这些基本功能完成,并提供了一些测试例子。
 
 
-收获：
-
-http://blog.csdn.net/u010235142/article/details/79222260
